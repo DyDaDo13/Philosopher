@@ -1,34 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   time.c                                             :+:      :+:    :+:   */
+/*   destroy_init.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dylmarti <dylmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/08 14:40:06 by dylmarti          #+#    #+#             */
-/*   Updated: 2024/01/09 17:25:46 by dylmarti         ###   ########.fr       */
+/*   Created: 2024/01/09 17:47:56 by dylmarti          #+#    #+#             */
+/*   Updated: 2024/01/09 17:48:29 by dylmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
 
-long	get_time(void)
+void	destroy_data(t_data *data, t_philo *philo)
 {
-	struct timeval	current_time;
-
-	gettimeofday(&current_time, NULL);
-	return ((current_time.tv_sec * 1000) + (current_time.tv_usec / 1000));
+	free(philo);
+	pthread_mutex_destroy(&data->mutex_status);
+	pthread_mutex_destroy(&data->mutex_printf);
 }
 
-void	wait_time(long time)
+t_philo	*init_data(t_data *data)
 {
-	long	actual_time;
-	long	temp_time;
-	actual_time = get_time();
-	temp_time = get_time();
-	while ((temp_time - actual_time) < time)
-	{
-		temp_time = get_time();
-		usleep(20);
-	}
+	t_philo	*philo;
+	
+	philo = malloc(sizeof(t_philo) * data->n_philo);
+	data->philo = philo;
+	pthread_mutex_init(&data->mutex_status, NULL);
+	pthread_mutex_init(&data->mutex_printf, NULL);
+	return (philo);
 }

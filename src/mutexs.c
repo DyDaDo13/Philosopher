@@ -1,34 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   time.c                                             :+:      :+:    :+:   */
+/*   mutexs.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dylmarti <dylmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/08 14:40:06 by dylmarti          #+#    #+#             */
-/*   Updated: 2024/01/09 17:25:46 by dylmarti         ###   ########.fr       */
+/*   Created: 2024/01/09 17:30:36 by dylmarti          #+#    #+#             */
+/*   Updated: 2024/01/09 17:37:09 by dylmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
 
-long	get_time(void)
+void	mutex_printf(t_data *data, char *str)
 {
-	struct timeval	current_time;
-
-	gettimeofday(&current_time, NULL);
-	return ((current_time.tv_sec * 1000) + (current_time.tv_usec / 1000));
+	pthread_mutex_lock(&data->mutex_printf);
+	printf("%s", str);
+	pthread_mutex_unlock(&data->mutex_printf);
 }
-
-void	wait_time(long time)
+void	mutex_state(t_data *data, int i)
 {
-	long	actual_time;
-	long	temp_time;
-	actual_time = get_time();
-	temp_time = get_time();
-	while ((temp_time - actual_time) < time)
-	{
-		temp_time = get_time();
-		usleep(20);
-	}
+	pthread_mutex_lock(&data->mutex_status);
+	data->state = i;
+	pthread_mutex_unlock(&data->mutex_status);
 }
