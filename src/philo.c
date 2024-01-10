@@ -6,24 +6,32 @@
 /*   By: dylmarti <dylmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 11:44:38 by dylmarti          #+#    #+#             */
-/*   Updated: 2024/01/09 17:54:37 by dylmarti         ###   ########.fr       */
+/*   Updated: 2024/01/10 16:05:03 by dylmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
 
-void	assign_number(t_data *data)
+void	assign_number(t_philo *philo, t_data *data)
 {
 	int		i;
 
-	while (i < )
+	i = -1;
+	while (++i < data->n_philo)
+	{
+		philo[i].nb_philo = (i + 1);
+		philo[i].data = data;
+	}
+		
 }
 
 void	*algo(void	*ptr)
 {
+	t_philo	*philo;
 	t_data	*data;
 
-	data = (t_data *)ptr;
+	philo = (t_philo *)ptr;
+	data = philo->data;
 	while(1)
 	{
 		pthread_mutex_lock(&data->mutex_status);
@@ -35,12 +43,17 @@ void	*algo(void	*ptr)
 		pthread_mutex_unlock(&data->mutex_status);
 		wait_time(1);
 	}
-	assign_number(data);
-	// if ((data->n_philo % 2) == 0)
-	// 	mutex_printf(data, "pair\n");
-	// else
-	// 	mutex_printf(data, "impair\n");
+	
+	mutex_printf(data, ft_itoa(philo->nb_philo));
 	return (NULL);
+}
+
+void	check_pair(t_data *data)
+{
+	if ((data->n_philo % 2) == 0)
+		data->pair = 0;
+	else
+		data->pair = 1;
 }
 
 void	philo(t_data *data)
@@ -50,8 +63,10 @@ void	philo(t_data *data)
 
 	i = -1;
 	philo = init_data(data);
+	check_pair(data);
+	assign_number(philo, data);
 	while (++i < data->n_philo)
-		pthread_create(&philo[i].philo, NULL, algo, data);
+		pthread_create(&philo[i].philo, NULL, algo, &philo[i]);
 	mutex_state(data, 1);
 	while (i-- > 0)
 		pthread_join(philo[i].philo, NULL);

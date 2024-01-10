@@ -5,7 +5,7 @@ NAME	= philo
 #---------	FUNCTIONS -----------
 #───────────────────────────────╲
 FUNC	= philo.c ft_atoi.c time.c mutexs.c \
-destroy_init.c \
+destroy_init.c ft_itoa.c\
 #───────────────────────────────╱
 
 #┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓

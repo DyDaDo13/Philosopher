@@ -6,7 +6,7 @@
 /*   By: dylmarti <dylmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 11:22:21 by dylmarti          #+#    #+#             */
-/*   Updated: 2024/01/09 17:49:00 by dylmarti         ###   ########.fr       */
+/*   Updated: 2024/01/10 15:21:29 by dylmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ typedef struct	s_data
 {
 	pthread_mutex_t	mutex_printf;
 	pthread_mutex_t	mutex_status;
+	pthread_mutex_t	mutex_nb_philo;
+	int				pair;
 	int				state;
 	int				n_philo;
 	int				t_die;
@@ -46,6 +48,7 @@ typedef struct	s_philo
 int		ft_atoi(const char *nptr);
 long	get_time(void);
 void	wait_time(long time);
+char	*ft_itoa(int n);
 
 ///////////  mutex  //////////////
 void	mutex_state(t_data *data, int i);

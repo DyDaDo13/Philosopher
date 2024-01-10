@@ -6,7 +6,7 @@
 /*   By: dylmarti <dylmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 17:47:56 by dylmarti          #+#    #+#             */
-/*   Updated: 2024/01/09 17:48:29 by dylmarti         ###   ########.fr       */
+/*   Updated: 2024/01/10 15:19:58 by dylmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,6 @@ t_philo	*init_data(t_data *data)
 	data->philo = philo;
 	pthread_mutex_init(&data->mutex_status, NULL);
 	pthread_mutex_init(&data->mutex_printf, NULL);
+	data->philo->nb_philo = 0;
 	return (philo);
 }
