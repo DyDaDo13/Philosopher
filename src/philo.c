@@ -6,7 +6,7 @@
 /*   By: dylmarti <dylmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 11:44:38 by dylmarti          #+#    #+#             */
-/*   Updated: 2024/01/10 16:05:03 by dylmarti         ###   ########.fr       */
+/*   Updated: 2024/01/11 13:31:35 by dylmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,19 +32,13 @@ void	*algo(void	*ptr)
 
 	philo = (t_philo *)ptr;
 	data = philo->data;
-	while(1)
-	{
-		pthread_mutex_lock(&data->mutex_status);
-		if (data->state == 1)
-		{
-			pthread_mutex_unlock(&data->mutex_status);
-			break;
-		}
-		pthread_mutex_unlock(&data->mutex_status);
-		wait_time(1);
-	}
-	
-	mutex_printf(data, ft_itoa(philo->nb_philo));
+	wait_start(data, philo);
+	mutex_printf(data, ft_itoa(((int)get_time())));
+	// if (data->pair == 0)
+	// 	start_pair(philo, data);
+	// else
+	// 	start_unpair(philo, data);
+	//mutex_printf(data, ft_itoa(philo->nb_philo));
 	return (NULL);
 }
 

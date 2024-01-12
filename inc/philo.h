@@ -6,7 +6,7 @@
 /*   By: dylmarti <dylmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 11:22:21 by dylmarti          #+#    #+#             */
-/*   Updated: 2024/01/10 15:21:29 by dylmarti         ###   ########.fr       */
+/*   Updated: 2024/01/11 10:19:57 by dylmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct	s_data
 	pthread_mutex_t	mutex_printf;
 	pthread_mutex_t	mutex_status;
 	pthread_mutex_t	mutex_nb_philo;
+	pthread_mutex_t	mutex_pair;
 	int				pair;
 	int				state;
 	int				n_philo;
@@ -37,11 +38,12 @@ typedef struct	s_data
 
 typedef struct	s_philo 
 {
+	pthread_mutex_t	mutex_fork;
 	pthread_t	philo;
+	int		t_start;
 	int		nb_philo;
 	int		times_eated;
 	int		fork;
-	pthread_mutex_t	mutex_fork;
 	t_data	*data;
 }t_philo;
 
@@ -49,6 +51,7 @@ int		ft_atoi(const char *nptr);
 long	get_time(void);
 void	wait_time(long time);
 char	*ft_itoa(int n);
+void	wait_start(t_data *data, t_philo *philo);
 
 ///////////  mutex  //////////////
 void	mutex_state(t_data *data, int i);
