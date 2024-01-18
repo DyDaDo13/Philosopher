@@ -4,8 +4,7 @@ NAME	= philo
 
 #---------	FUNCTIONS -----------
 #───────────────────────────────╲
-FUNC	= philo.c ft_atoi.c time.c mutexs.c \
-destroy_init.c ft_itoa.c\
+FUNC	= main.c check_errors.c functions.c init_all.c \
 #───────────────────────────────╱
 
 #┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
@@ -29,7 +28,7 @@ SRCS	= $(addprefix $(SRCS_DIR), $(FUNC))
 #━━━━━━━━━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 CC		= cc
 RM		= rm -rf
-CFLAGS	= -Wall -Wextra -Werror -pthread
+CFLAGS	= -Wall -Wextra -Werror -pthread -g
 INCLUDE	= -I.
 
 

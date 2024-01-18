@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dylmarti <dylmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dydado13 <dydado13@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 11:44:38 by dylmarti          #+#    #+#             */
-/*   Updated: 2024/01/11 13:31:35 by dylmarti         ###   ########.fr       */
+/*   Updated: 2024/01/12 17:13:37 by dydado13         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	*algo(void	*ptr)
 	philo = (t_philo *)ptr;
 	data = philo->data;
 	wait_start(data, philo);
-	mutex_printf(data, ft_itoa(((int)get_time())));
+	//mutex_printf(data, ft_itoa(((int)get_time())));
 	// if (data->pair == 0)
 	// 	start_pair(philo, data);
 	// else
