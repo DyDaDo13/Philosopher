@@ -4,7 +4,7 @@ NAME	= philo
 
 #---------	FUNCTIONS -----------
 #───────────────────────────────╲
-FUNC	= main.c check_errors.c functions.c init_all.c \
+FUNC	= main.c check_errors.c functions.c init_all.c free_all.c time.c\
 #───────────────────────────────╱
 
 #┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓

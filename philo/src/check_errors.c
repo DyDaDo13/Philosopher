@@ -6,15 +6,17 @@
 /*   By: dydado13 <dydado13@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 15:08:39 by dydado13          #+#    #+#             */
-/*   Updated: 2024/01/18 11:03:54 by dydado13         ###   ########.fr       */
+/*   Updated: 2024/01/18 16:33:51 by dydado13         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
 
-void	error_handler(char *str)
+void	error_handler(char *str, t_data *data)
 {
 	printf("\033[31m%s\033[0m", str);
+	if (!data)
+		free_all(data);
 	exit(1);
 }
 
@@ -49,12 +51,13 @@ int	check_number(char **av)
 	return (0);
 }
 
-void	check_errors(int ac, char **av)
+int	check_errors(int ac, char **av)
 {
 	if ((ac - 1) < 4 || (ac - 1) > 5)
-		error_handler("Error : Number of Args Not Valid!!!\n");
+		return (printf("Error : Number of Args Not Valid!!!\n"), 1);
 	if (not_number(av) == 1)
-		error_handler("Error : Arguments Not Numbers!!!\n");
+		return (printf("Error : Arguments Not Numbers!!!\n"), 1);
 	if (check_number(av) == 1)
-		error_handler("Error : Size of An Arguments Not Valid !!!\n");
+		return (printf("Error : Size of An Arguments Not Valid !!!\n"), 1);
+	return (0);
 }

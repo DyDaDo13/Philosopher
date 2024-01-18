@@ -6,7 +6,7 @@
 /*   By: dydado13 <dydado13@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 11:22:21 by dylmarti          #+#    #+#             */
-/*   Updated: 2024/01/18 11:02:53 by dydado13         ###   ########.fr       */
+/*   Updated: 2024/01/18 16:48:55 by dydado13         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,18 @@ typedef struct s_philo
 long	ft_atol(const char *nptr);
 
 //------------------ check_errors.c ----------------
-void	check_errors(int ac, char **av);
+int	check_errors(int ac, char **av);
 int		not_number(char **tab);
+void	error_handler(char *str, t_data *data);
 
 //------------------- init_all.c -------------------
 void	init_all(int ac, char **av, t_data *data);
-void	error_handler(char *str);
+void	free_all(t_data *data);
+void	destroy_mutexes(t_data *data);
+
+//--------------------- time.c ---------------------
+long	get_time(void);
+void	wait_time(long time);
 // long	get_time(void);
 // void	wait_time(long time);
 // char	*ft_itoa(int n);
