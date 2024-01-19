@@ -6,7 +6,7 @@
 /*   By: dylmarti <dylmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 15:07:49 by dydado13          #+#    #+#             */
-/*   Updated: 2024/01/19 10:38:25 by dylmarti         ###   ########.fr       */
+/*   Updated: 2024/01/19 15:44:01 by dylmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ void	stop_dinner(t_data *data)
 	i = -1;
 	while (++i < data->n_philo)
 		pthread_join(data->philo[i]->thread, NULL);
-	// if (data->t_must_eat != 1)
-	// 	write(ouput);
+	if (data->t_must_eat != 1)
+		write_output(data);
 	destroy_mutexes(data);
 	free_all(data);
 }
@@ -45,7 +45,8 @@ int	main(int ac, char **av)
 		return (0);
 	init_all(ac, av, &data);
 	start_dinner(&data);
+	//printf("[%10ld]\t%s%03d\t%s\e[0m:fork[%d]\n", get_time() - data.start, "\e[31m", 3 + 1, "test", 0);
 	stop_dinner(&data);
-	//free_all(&data);
+	free_all(&data);
 	return (0);
 }

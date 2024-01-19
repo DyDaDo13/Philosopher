@@ -6,7 +6,7 @@
 /*   By: dylmarti <dylmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 11:22:21 by dylmarti          #+#    #+#             */
-/*   Updated: 2024/01/19 12:01:36 by dylmarti         ###   ########.fr       */
+/*   Updated: 2024/01/19 15:30:26 by dylmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,16 @@ typedef struct s_philo
 	t_data			*data;
 }t_philo;
 
+typedef enum s_status
+{
+	DIED = 0,
+	EATING = 1,
+	SLEEPING = 2,
+	THINKING = 3,
+	GOT_FORK_1 = 4,
+	GOT_FORK_2 = 5
+}t_status;
+
 /******************************************************
 *                     FUNCTIONS                       *
 ******************************************************/
@@ -76,6 +86,9 @@ void	destroy_mutexes(t_data *data);
 long	get_time(void);
 void	wait_time(long time);
 void	*philosopher(void *ptr);
+void	print_status(t_philo *philo, char *str);
+void	write_status(t_philo *philo, t_Status status);
+
 // long	get_time(void);
 // void	wait_time(long time);
 // char	*ft_itoa(int n);

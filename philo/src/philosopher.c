@@ -6,7 +6,7 @@
 /*   By: dylmarti <dylmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:52:02 by dydado13          #+#    #+#             */
-/*   Updated: 2024/01/19 12:09:33 by dylmarti         ###   ########.fr       */
+/*   Updated: 2024/01/19 15:40:07 by dylmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,18 @@ void	think_routine(t_philo *philo, bool silent)
 	time_t	time_to_think;
 	
 	pthread_mutex_lock(&philo->mutex_eat_fork);
-	time_to_think = (philo->data->t_die)
+	time_to_think = (philo->data->t_die
+		- (get_time()- philo->last_meal) - philo->data->t_eat) / 2;
 	pthread_mutex_unlock(&philo->mutex_eat_fork);
-	
+	if (time_to_think < 0)
+		time_to_think = 0;
+	if (time_to_think == 0 && silent == true)
+		time_to_think = 1;
+	if (time_to_think > 600)
+		time_to_think = 200;
+	if (silent == false)
+		write_status(philo, THINKING)
+	philo_sleep(philo->data, time_to_think);
 }
 
 void	start_dinner_delay(time_t start_time)
@@ -60,7 +69,7 @@ void	*philosopher(void *ptr)
 		think_routine(philo, true);
 	while (has_dinner_stop(philo->data) == true)
 	{
-		printf("test\n");
+		//printf("test\n");
 		eat_sleep_routine(philo);
 		think_routine(philo, false);
 	}

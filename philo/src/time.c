@@ -3,14 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   time.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dydado13 <dydado13@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dylmarti <dylmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 14:40:06 by dylmarti          #+#    #+#             */
-/*   Updated: 2024/01/18 16:16:10 by dydado13         ###   ########.fr       */
+/*   Updated: 2024/01/19 15:39:00 by dylmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
+
+void	philo_sleep(t_data *data, time_t sleep_time)
+{
+	time_t	wake_up;
+
+	wake_up = get_time() + sleep_time;
+	while (get_time() < wake_up)
+	{
+		if (has_dinner_stop(data))
+			break;
+		usleep(20);
+	}
+}
 
 long	get_time(void)
 {
