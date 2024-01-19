@@ -6,7 +6,7 @@
 /*   By: dylmarti <dylmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 11:22:21 by dylmarti          #+#    #+#             */
-/*   Updated: 2024/01/19 10:37:09 by dylmarti         ###   ########.fr       */
+/*   Updated: 2024/01/19 12:01:36 by dylmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <sys/time.h>
 # include <stdlib.h>
 # include <pthread.h>
+# include <stdbool.h>
 
 /******************************************************
 *                     STRUCTURES                      *
@@ -36,8 +37,9 @@ typedef struct s_data
 	time_t			t_sleep;
 	time_t			t_eat;
 	int				t_must_eat;
+	bool			dinner_stop;
 	pthread_mutex_t	mutex_printf;
-	pthread_mutex_t	mutex_status;
+	pthread_mutex_t	mutex_dinner;
 	pthread_mutex_t	*mutex_fork;
 	struct s_philo	**philo;
 }t_data;

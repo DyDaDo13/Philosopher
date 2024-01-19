@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_all.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dydado13 <dydado13@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dylmarti <dylmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 09:23:21 by dydado13          #+#    #+#             */
-/*   Updated: 2024/01/18 16:30:49 by dydado13         ###   ########.fr       */
+/*   Updated: 2024/01/19 12:03:03 by dylmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	init_mutexes(t_data *data)
 	data->mutex_fork = init_forks(data);
 	if (pthread_mutex_init(&data->mutex_printf, NULL) != 0)
 		error_handler("Error : mutex_printf not allocated\n", data);
-	if (pthread_mutex_init(&data->mutex_status, NULL) != 0)
+	if (pthread_mutex_init(&data->mutex_dinner, NULL) != 0)
 		error_handler("Error : mutex_status not allocated\n", data);
 }
 
@@ -83,4 +83,5 @@ void	init_all(int ac, char **av, t_data *data)
 		data->t_must_eat = ft_atol(av[5]);
 	data->philo = init_philo(data);
 	init_mutexes(data);
+	data->dinner_stop = false;
 }
