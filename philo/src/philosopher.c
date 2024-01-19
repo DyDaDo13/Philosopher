@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosopher.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dydado13 <dydado13@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dylmarti <dylmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:52:02 by dydado13          #+#    #+#             */
-/*   Updated: 2024/01/18 16:54:42 by dydado13         ###   ########.fr       */
+/*   Updated: 2024/01/19 10:44:15 by dylmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,8 @@ void	*philosopher(void *ptr)
 	philo = (t_philo*)ptr;
 	if (philo->data->t_must_eat == 0)
 		return (NULL);
-	
+	pthread_mutex_lock(&philo->data->mutex_status);
+	printf("program started !!!\n");
+	pthread_mutex_unlock(&philo->data->mutex_status);
+	return (NULL);
 }

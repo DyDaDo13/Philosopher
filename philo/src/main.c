@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dydado13 <dydado13@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dylmarti <dylmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 15:07:49 by dydado13          #+#    #+#             */
-/*   Updated: 2024/01/18 16:50:52 by dydado13         ###   ########.fr       */
+/*   Updated: 2024/01/19 10:38:25 by dylmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 void	start_dinner(t_data *data)
 {
-	int		i;
+	long		i;
 
 	data->start = get_time() + (data->n_philo * 2 * 10);
 	i = -1;
 	while (++i < data->n_philo)
-		if (pthread_create(data->philo[i]->thread, NULL,
+		if (pthread_create(&data->philo[i]->thread, NULL,
 			&philosopher, data->philo[i]) != 0)
 			error_handler("Error : error while creating thread", data);
 }
 
 void	stop_dinner(t_data *data)
 {
-	int		i;
+	long		i;
 
 	i = -1;
 	while (++i < data->n_philo)

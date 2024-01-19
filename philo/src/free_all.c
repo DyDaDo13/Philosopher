@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_all.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dydado13 <dydado13@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dylmarti <dylmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:11:09 by dydado13          #+#    #+#             */
-/*   Updated: 2024/01/18 16:48:21 by dydado13         ###   ########.fr       */
+/*   Updated: 2024/01/19 10:37:44 by dylmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	free_all(t_data *data)
 {
-	int	i;
+	long	i;
 
 	i = -1;
 	free(data->mutex_fork);
@@ -25,7 +25,7 @@ void	free_all(t_data *data)
 
 void	destroy_mutexes(t_data *data)
 {
-	int		i;
+	long		i;
 
 	i = -1;
 	while (++i < data->n_philo)
