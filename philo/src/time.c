@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   time.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dylmarti <dylmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dydado13 <dydado13@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 14:40:06 by dylmarti          #+#    #+#             */
-/*   Updated: 2024/01/19 15:39:00 by dylmarti         ###   ########.fr       */
+/*   Updated: 2024/01/22 15:07:42 by dydado13         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	philo_sleep(t_data *data, time_t sleep_time)
 	while (get_time() < wake_up)
 	{
 		if (has_dinner_stop(data))
-			break;
+			break ;
 		usleep(20);
 	}
 }
@@ -37,6 +37,7 @@ void	wait_time(long time)
 {
 	long	actual_time;
 	long	temp_time;
+
 	actual_time = get_time();
 	temp_time = get_time();
 	while ((temp_time - actual_time) < time)
@@ -45,4 +46,3 @@ void	wait_time(long time)
 		usleep(20);
 	}
 }
-

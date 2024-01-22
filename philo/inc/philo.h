@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dylmarti <dylmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dydado13 <dydado13@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 11:22:21 by dylmarti          #+#    #+#             */
-/*   Updated: 2024/01/19 15:30:26 by dylmarti         ###   ########.fr       */
+/*   Updated: 2024/01/22 14:50:55 by dydado13         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,15 @@ typedef struct s_data
 {
 	time_t			start;
 	unsigned int	n_philo;
+	pthread_t		supervisor;
 	time_t			t_die;
 	time_t			t_sleep;
 	time_t			t_eat;
 	int				t_must_eat;
 	bool			dinner_stop;
-	pthread_mutex_t	mutex_printf;
-	pthread_mutex_t	mutex_dinner;
-	pthread_mutex_t	*mutex_fork;
+	pthread_mutex_t	sim_stop_lock;
+	pthread_mutex_t	write_lock;
+	pthread_mutex_t	*fork_locks;
 	struct s_philo	**philo;
 }t_data;
 
@@ -50,7 +51,7 @@ typedef struct s_philo
 	unsigned int	nb_philo;
 	unsigned int	times_eated;
 	unsigned int	fork[2];
-	pthread_mutex_t	mutex_eat_fork;
+	pthread_mutex_t	meal_time_lock;
 	time_t			last_meal;
 	t_data			*data;
 }t_philo;
@@ -87,8 +88,12 @@ long	get_time(void);
 void	wait_time(long time);
 void	*philosopher(void *ptr);
 void	print_status(t_philo *philo, char *str);
-void	write_status(t_philo *philo, t_Status status);
-
+void	write_status(t_philo *philo, t_status status);
+void	write_output(t_data *data);
+bool	has_dinner_stop(t_data *data);
+void	philo_sleep(t_data *data, time_t sleep_time);
+void	start_dinner_delay(time_t start_time);
+void	*supervisor(void *ptr);
 // long	get_time(void);
 // void	wait_time(long time);
 // char	*ft_itoa(int n);

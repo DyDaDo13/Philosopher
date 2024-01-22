@@ -6,7 +6,7 @@
 /*   By: dydado13 <dydado13@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 15:08:39 by dydado13          #+#    #+#             */
-/*   Updated: 2024/01/18 16:33:51 by dydado13         ###   ########.fr       */
+/*   Updated: 2024/01/22 12:33:26 by dydado13         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,15 @@ int	not_number(char **tab)
 
 int	check_number(char **av)
 {
-	if (ft_atol(av[1]) >= 10000 || ft_atol(av[1]) <= 0)
+	if (ft_atol(av[1]) >= 10000 || ft_atol(av[1]) < 0)
 		return (1);
-	if (ft_atol(av[2]) > INT_MAX || ft_atol(av[2]) <= 0)
+	if (ft_atol(av[2]) > INT_MAX || ft_atol(av[2]) < 0)
 		return (1);
-	if (ft_atol(av[3]) > INT_MAX || ft_atol(av[3]) <= 0)
+	if (ft_atol(av[3]) > INT_MAX || ft_atol(av[3]) < 0)
 		return (1);
-	if (ft_atol(av[4]) > INT_MAX || ft_atol(av[4]) <= 0)
+	if (ft_atol(av[4]) > INT_MAX || ft_atol(av[4]) < 0)
 		return (1);
-	if (av[5] && (ft_atol(av[5]) > INT_MAX || ft_atol(av[5]) <= 0))
+	if (av[5] && (ft_atol(av[5]) > INT_MAX || ft_atol(av[5]) < 0))
 		return (1);
 	return (0);
 }

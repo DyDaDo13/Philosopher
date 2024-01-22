@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_all.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dylmarti <dylmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dydado13 <dydado13@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 09:23:21 by dydado13          #+#    #+#             */
-/*   Updated: 2024/01/19 12:03:03 by dylmarti         ###   ########.fr       */
+/*   Updated: 2024/01/22 15:08:47 by dydado13         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ pthread_mutex_t	*init_forks(t_data *data)
 
 	forks = malloc(sizeof(pthread_mutex_t) * data->n_philo);
 	if (!forks)
-		error_handler("Error : forks not allocated | l-37 in 'init_all.c'\n", data);
+		error_handler("Error : forks not allocated\n", data);
 	i = -1;
 	while (++i < data->n_philo)
 		if (pthread_mutex_init(&forks[i], 0) != 0)
@@ -29,10 +29,10 @@ pthread_mutex_t	*init_forks(t_data *data)
 
 void	init_mutexes(t_data *data)
 {
-	data->mutex_fork = init_forks(data);
-	if (pthread_mutex_init(&data->mutex_printf, NULL) != 0)
+	data->fork_locks = init_forks(data);
+	if (pthread_mutex_init(&data->write_lock, NULL) != 0)
 		error_handler("Error : mutex_printf not allocated\n", data);
-	if (pthread_mutex_init(&data->mutex_dinner, NULL) != 0)
+	if (pthread_mutex_init(&data->write_lock, NULL) != 0)
 		error_handler("Error : mutex_status not allocated\n", data);
 }
 
@@ -60,8 +60,8 @@ t_philo	**init_philo(t_data *data)
 	{
 		philo[i] = malloc(sizeof(t_philo) * 1);
 		if (!philo[i])
-			error_handler("Error : structure 'Philo*' did not allocated\n", data);
-		if (pthread_mutex_init(&philo[i]->mutex_eat_fork, 0) != 0)
+			error_handler("Error : structure 'Philo*' did not alloc\n", data);
+		if (pthread_mutex_init(&philo[i]->meal_time_lock, 0) != 0)
 			error_handler("Error : mutex->philo did not allocated\n", data);
 		philo[i]->data = data;
 		philo[i]->nb_philo = i;
@@ -73,13 +73,12 @@ t_philo	**init_philo(t_data *data)
 
 void	init_all(int ac, char **av, t_data *data)
 {
-	(void)ac;
 	data->n_philo = ft_atol(av[1]);
 	data->t_die = ft_atol(av[2]);
 	data->t_eat = ft_atol(av[3]);
 	data->t_sleep = ft_atol(av[4]);
 	data->t_must_eat = -1;
-	if (av[5])
+	if (ac - 1 == 5)
 		data->t_must_eat = ft_atol(av[5]);
 	data->philo = init_philo(data);
 	init_mutexes(data);
