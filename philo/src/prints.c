@@ -44,14 +44,14 @@ void	write_status(t_philo *philo, t_status status)
 		return ;
 	}
 	if (status == DIED)
-		print_status(philo, "\033[31mdied\033[0m");
+		print_status(philo, "😵 \033[31mdied\033[0m");
 	else if (status == SLEEPING)
-		print_status(philo, "is sleeping");
+		print_status(philo, "😴 is sleeping");
 	else if (status == EATING)
-		print_status(philo, "is eating");
+		print_status(philo, "😋 is eating");
 	else if (status == THINKING)
-		print_status(philo, "is thinking");
+		print_status(philo, "🤔 is thinking");
 	else if (status == GOT_FORK_1 || status == GOT_FORK_2)
-		print_status(philo, "has taken a fork");
+		print_status(philo, "🍴 has taken a fork");
 	pthread_mutex_unlock(&philo->data->write_lock);
 }
