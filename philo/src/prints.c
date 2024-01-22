@@ -6,7 +6,7 @@
 /*   By: dydado13 <dydado13@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 14:56:18 by dylmarti          #+#    #+#             */
-/*   Updated: 2024/01/22 15:11:22 by dydado13         ###   ########.fr       */
+/*   Updated: 2024/01/22 16:53:39 by dydado13         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	write_status(t_philo *philo, t_status status)
 		return ;
 	}
 	if (status == DIED)
-		print_status(philo, "died");
+		print_status(philo, "\033[31mdied\033[0m");
 	else if (status == SLEEPING)
 		print_status(philo, "is sleeping");
 	else if (status == EATING)
