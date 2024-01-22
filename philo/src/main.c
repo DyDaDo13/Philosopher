@@ -6,13 +6,13 @@
 /*   By: dydado13 <dydado13@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 15:07:49 by dydado13          #+#    #+#             */
-/*   Updated: 2024/01/22 15:06:55 by dydado13         ###   ########.fr       */
+/*   Updated: 2024/01/22 16:44:11 by dydado13         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
 
-void	start_dinner(t_data *data)
+bool	start_dinner(t_data *data)
 {
 	long		i;
 
@@ -20,15 +20,17 @@ void	start_dinner(t_data *data)
 	i = -1;
 	while (++i < data->n_philo)
 	{
+		data->philo[i]->last_meal = data->start;
 		if (pthread_create(&data->philo[i]->thread, NULL,
 				&philosopher, data->philo[i]) != 0)
-			error_handler("Error : error while creating thread", data);
+			return (error_handler(data), false);
 	}
 	if (data->n_philo > 1)
 	{
 		if (pthread_create(&data->supervisor, NULL, &supervisor, data) != 0)
-			error_handler("Error : error while creating supervior", data);
+			return (error_handler(data), false);
 	}
+	return (true);
 }
 
 void	stop_dinner(t_data *data)
@@ -46,12 +48,16 @@ void	stop_dinner(t_data *data)
 
 int	main(int ac, char **av)
 {
-	t_data	data;
+	t_data	*data;
 
+	data = NULL;
 	if (check_errors(ac, av) != 0)
 		return (0);
-	init_all(ac, av, &data);
-	start_dinner(&data);
-	stop_dinner(&data);
+	data = init_all(ac, av, data);
+	if (!data)
+		return (0);
+	if (!start_dinner(data))
+		return (0);
+	stop_dinner(data);
 	return (0);
 }

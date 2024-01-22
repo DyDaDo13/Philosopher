@@ -6,7 +6,7 @@
 /*   By: dydado13 <dydado13@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 11:22:21 by dylmarti          #+#    #+#             */
-/*   Updated: 2024/01/22 15:18:53 by dydado13         ###   ########.fr       */
+/*   Updated: 2024/01/22 16:25:15 by dydado13         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,10 @@ long	ft_atol(const char *nptr);
 //------------------ check_errors.c ----------------
 int		check_errors(int ac, char **av);
 int		not_number(char **tab);
-void	error_handler(char *str, t_data *data);
+void	error_handler(t_data *data);
 
 //------------------- init_all.c -------------------
-void	init_all(int ac, char **av, t_data *data);
+t_data	*init_all(int ac, char **av, t_data *data);
 void	free_all(t_data *data);
 void	destroy_mutexes(t_data *data);
 

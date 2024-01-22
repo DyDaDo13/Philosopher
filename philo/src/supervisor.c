@@ -6,7 +6,7 @@
 /*   By: dydado13 <dydado13@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 13:35:55 by dydado13          #+#    #+#             */
-/*   Updated: 2024/01/22 15:12:04 by dydado13         ###   ########.fr       */
+/*   Updated: 2024/01/22 16:40:47 by dydado13         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ bool	kill_philo(t_philo *philo)
 	time = get_time();
 	if ((time - philo->last_meal) >= philo->data->t_die)
 	{
-		set_dinner_stop_flag(philo->data, true);
 		write_status(philo, DIED);
+		set_dinner_stop_flag(philo->data, true);
 		pthread_mutex_unlock(&philo->meal_time_lock);
 		return (true);
 	}

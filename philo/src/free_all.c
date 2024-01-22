@@ -6,7 +6,7 @@
 /*   By: dydado13 <dydado13@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:11:09 by dydado13          #+#    #+#             */
-/*   Updated: 2024/01/22 14:59:03 by dydado13         ###   ########.fr       */
+/*   Updated: 2024/01/22 16:40:19 by dydado13         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	free_all(t_data *data)
 	while (++i < (int)data->n_philo)
 		free(data->philo[i]);
 	free(data->philo);
+	free(data);
 }
 
 void	destroy_mutexes(t_data *data)

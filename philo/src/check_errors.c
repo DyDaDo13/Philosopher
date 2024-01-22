@@ -6,18 +6,16 @@
 /*   By: dydado13 <dydado13@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 15:08:39 by dydado13          #+#    #+#             */
-/*   Updated: 2024/01/22 12:33:26 by dydado13         ###   ########.fr       */
+/*   Updated: 2024/01/22 16:07:28 by dydado13         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
 
-void	error_handler(char *str, t_data *data)
+void	error_handler(t_data *data)
 {
-	printf("\033[31m%s\033[0m", str);
 	if (!data)
 		free_all(data);
-	exit(1);
 }
 
 int	not_number(char **tab)
