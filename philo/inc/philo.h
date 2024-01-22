@@ -6,7 +6,7 @@
 /*   By: dydado13 <dydado13@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 11:22:21 by dylmarti          #+#    #+#             */
-/*   Updated: 2024/01/22 14:50:55 by dydado13         ###   ########.fr       */
+/*   Updated: 2024/01/22 15:18:53 by dydado13         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,28 +83,24 @@ void	init_all(int ac, char **av, t_data *data);
 void	free_all(t_data *data);
 void	destroy_mutexes(t_data *data);
 
+//----------------------- plus.c -----------------
+bool	has_dinner_stop(t_data *data);
+
 //--------------------- time.c ---------------------
 long	get_time(void);
 void	wait_time(long time);
-void	*philosopher(void *ptr);
-void	print_status(t_philo *philo, char *str);
-void	write_status(t_philo *philo, t_status status);
-void	write_output(t_data *data);
-bool	has_dinner_stop(t_data *data);
 void	philo_sleep(t_data *data, time_t sleep_time);
+
+//-------------------- prints.c ------------------
+void	write_output(t_data *data);
+void	write_status(t_philo *philo, t_status status);
+void	print_status(t_philo *philo, char *str);
+
+//------------------- philo.c --------------------
+void	*philosopher(void *ptr);
 void	start_dinner_delay(time_t start_time);
+
+//---------------- supervisor.c ------------------
 void	*supervisor(void *ptr);
-// long	get_time(void);
-// void	wait_time(long time);
-// char	*ft_itoa(int n);
-// void	wait_start(t_data *data, t_philo *philo);
-
-// ///////////  mutex  //////////////
-// void	mutex_state(t_data *data, int i);
-// void	mutex_printf(t_data *data, char *str);
-
-// /////////// init destroy /////////
-// t_philo	*init_data(t_data *data);
-// void	destroy_data(t_data *data, t_philo *philo);
 
 #endif
